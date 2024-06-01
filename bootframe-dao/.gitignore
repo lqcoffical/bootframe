@@ -1,9 +1,8 @@
 HELP.md
+target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-**/target/
-**/log*/
 
 ### STS ###
 .apt_generated
@@ -16,7 +15,6 @@ HELP.md
 
 ### IntelliJ IDEA ###
 .idea
-.gradle
 *.iws
 *.iml
 *.ipr
