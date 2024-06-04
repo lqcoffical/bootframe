@@ -31,16 +31,17 @@
         <mysql.version>8.0.23</mysql.version>
         <mybatis-plus.version>3.5.6</mybatis-plus.version>
         <mybatis-plus-generator.version>3.5.6</mybatis-plus-generator.version>
-        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
-        <commons.lang.version>2.6</commons.lang.version>
-        <guava.version>28.2-jre</guava.version>
-        <cn.hutool.version>5.8.26</cn.hutool.version>
+        <spring-boot.version>2.7.10</spring-boot.version>
+        <commons.lang3.version>3.14.0</commons.lang3.version>
+        <guava.version>33.2.0-jre</guava.version>
+        <cn.hutool.version>5.8.28</cn.hutool.version>
         <http.components.version>4.4.16</http.components.version>
-        <gson.version>2.8.6</gson.version>
-        <swagger.version>2.9.2</swagger.version>
-        <swagger-ui.version>2.9.2</swagger-ui.version>
-        <aspectjweaver.version>1.8.9</aspectjweaver.version>
-        <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
+        <gson.version>2.11.0</gson.version>
+        <swagger.version>3.0.0</swagger.version>
+        <swagger-ui.version>3.0.0</swagger-ui.version>
+        <aspectjweaver.version>1.9.22</aspectjweaver.version>
+        <aspectj.version>1.9.22</aspectj.version>
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <tims.bootframe.version>0.0.1-SNAPSHOT</tims.bootframe.version>
     </properties>
 
@@ -81,9 +82,9 @@
             </dependency>
 
             <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>${commons.lang.version}</version>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3.version}</version>
             </dependency>
 
             <dependency>
@@ -121,10 +122,17 @@
                 <version>${swagger-ui.version}</version>
             </dependency>
 
+            <!--aspectj-增强版aop-->
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
                 <version>${aspectjweaver.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectj.version}</version>
             </dependency>
 
             <dependency>
@@ -151,12 +159,21 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <!-- 不加这个的话configuration注解爆红 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
@@ -166,8 +183,8 @@
         </dependency>
 
         <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
 
         <dependency>
@@ -188,6 +205,13 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
+            <exclusions>
+                <!-- 与guava中的引用版本冲突，用maven-helper排除-->
+                <exclusion>
+                    <artifactId>error_prone_annotations</artifactId>
+                    <groupId>com.google.errorprone</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -202,6 +226,11 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
         </dependency>
 
         <dependency>

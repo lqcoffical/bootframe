@@ -17,6 +17,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.tims.bootframe</groupId>
+            <artifactId>bootframe-biz</artifactId>
+            <version>${tims.bootframe.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>

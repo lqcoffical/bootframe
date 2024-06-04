@@ -22,3 +22,5 @@ mybatis plus代码生成
 .sh的shell脚本
 
 **PS**：tims是目前正在喝的咖啡
+
+**代码生成器**：使用MyBatisX，免费、功能完整，可视化界面配置、无代码侵入。生成mapper接口记得加@Mapper和@Repository注解

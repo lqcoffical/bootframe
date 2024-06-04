@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: bootframe
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bootframe?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 123456
+    hikari:
+      auto-commit: false
+      pool-name: hikariConnectionPool
+      minimum-idle: 10
+      maximum-pool-size: 25
+
+server:
+  port: 8080
+  servlet:
+    context-path: /tims
+  tomcat:
+    max-threads: 800
+    accept-count: 1000
+    max-connections: 3000
+
+swagger:
+  enable: true
+
+
