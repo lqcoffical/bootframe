@@ -17,8 +17,22 @@
 
     <dependencies>
         <!-- 这里后面可以引入自己上传到maven私服的common包，以jar包形式引入-->
-        <!--加密、重试、限流、熔断、降级、工具类、导出等等通用能力可以在这个模块做，按需求引入依赖-->
+        <!--加密、重试、定时任务、限流、熔断、降级、工具类、导出等等通用能力可以在这个模块做，按需求引入依赖-->
 
+        <!-- 依赖config模块-->
+        <dependency>
+            <groupId>com.tims.bootframe</groupId>
+            <artifactId>bootframe-config</artifactId>
+            <version>${tims.bootframe.version}</version>
+        </dependency>
+
+        <!-- xxl-job-->
+        <!-- 会依赖mysql，所以要配置数据库连接，不配置的话这个模块会报错-->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>2.4.1</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -38,35 +52,35 @@
     </dependencies>
 
     <build>
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-compiler-plugin</artifactId>-->
-<!--                <version>3.8.1</version>-->
-<!--                <configuration>-->
-<!--                    <source>1.8</source>-->
-<!--                    <target>1.8</target>-->
-<!--                    <encoding>UTF-8</encoding>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--                <configuration>-->
-<!--                    <mainClass>com.tims.bootframe.common.BootframeCommonApplication</mainClass>-->
-<!--                    <skip>true</skip>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>repackage</id>-->
-<!--                        <goals>-->
-<!--                            <goal>repackage</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
+        <!--        <plugins>-->
+        <!--            <plugin>-->
+        <!--                <groupId>org.apache.maven.plugins</groupId>-->
+        <!--                <artifactId>maven-compiler-plugin</artifactId>-->
+        <!--                <version>3.8.1</version>-->
+        <!--                <configuration>-->
+        <!--                    <source>1.8</source>-->
+        <!--                    <target>1.8</target>-->
+        <!--                    <encoding>UTF-8</encoding>-->
+        <!--                </configuration>-->
+        <!--            </plugin>-->
+        <!--            <plugin>-->
+        <!--                <groupId>org.springframework.boot</groupId>-->
+        <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+        <!--                <version>${spring-boot.version}</version>-->
+        <!--                <configuration>-->
+        <!--                    <mainClass>com.tims.bootframe.BootframeCommonApplication</mainClass>-->
+        <!--                    <skip>true</skip>-->
+        <!--                </configuration>-->
+        <!--                <executions>-->
+        <!--                    <execution>-->
+        <!--                        <id>repackage</id>-->
+        <!--                        <goals>-->
+        <!--                            <goal>repackage</goal>-->
+        <!--                        </goals>-->
+        <!--                    </execution>-->
+        <!--                </executions>-->
+        <!--            </plugin>-->
+        <!--        </plugins>-->
     </build>
 
 </project>

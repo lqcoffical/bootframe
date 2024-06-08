@@ -1,0 +1,41 @@
+# yml配置文件注意缩进格式和空格（冒号后有个空格），properties配置文件注意键值的空格
+spring:
+  profiles:
+    active: dev
+  application:
+    name: bootframe
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bootframe?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 123456
+    hikari:
+      auto-commit: false
+      pool-name: hikariConnectionPool
+      minimum-idle: 10
+      maximum-pool-size: 25
+
+server:
+  port: 8080
+  servlet:
+    context-path: /tims
+  tomcat:
+    accept-count: 1000
+    max-connections: 3000
+    threads:
+      max: 800
+
+# 开启mybatis的sql打印
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 要指定日志配置文件的位置才能生效
+logging:
+  config: classpath:logback-spring.xml
+
+swagger:
+  enable: true
+
+

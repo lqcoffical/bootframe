@@ -17,6 +17,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.tims.bootframe</groupId>
+            <artifactId>bootframe-biz</artifactId>
+            <version>${tims.bootframe.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -51,7 +57,7 @@
 <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
 <!--                <version>${spring-boot.version}</version>-->
 <!--                <configuration>-->
-<!--                    <mainClass>com.tims.bootframe.web.BootframeWebApplication</mainClass>-->
+<!--                    <mainClass>com.tims.bootframe.BootframeWebApplication</mainClass>-->
 <!--                    <skip>true</skip>-->
 <!--                </configuration>-->
 <!--                <executions>-->
