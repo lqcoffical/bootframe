@@ -1,8 +1,10 @@
 package com.tims.bootframe.common.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public enum BaseExceptionCode implements ExceptionCode {
 
     FAIL(-1, "服务器繁忙,请稍后再试！"),
@@ -64,9 +66,10 @@ public enum BaseExceptionCode implements ExceptionCode {
     private Integer errno;
     private String errMessage;
 
-    BaseExceptionCode(int code, String errMessage) {
+    // 用lombok全参构造注解
+    /*BaseExceptionCode(int code, String errMessage) {
         this.errno = code;
         this.errMessage = errMessage;
-    }
+    }*/
 
 }

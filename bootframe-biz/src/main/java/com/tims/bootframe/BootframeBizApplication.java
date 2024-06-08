@@ -1,4 +1,4 @@
-package com.tims.bootframe.biz;
+package com.tims.bootframe;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

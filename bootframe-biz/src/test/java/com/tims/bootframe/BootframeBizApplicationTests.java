@@ -1,10 +1,10 @@
-package com.tims.bootframe.web;
+package com.tims.bootframe;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class BootframeWebApplicationTests {
+@SpringBootTest(classes = BootframeBizApplication.class)
+class BootframeBizApplicationTests {
 
     @Test
     void contextLoads() {

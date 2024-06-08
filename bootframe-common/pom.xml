@@ -19,7 +19,15 @@
         <!-- 这里后面可以引入自己上传到maven私服的common包，以jar包形式引入-->
         <!--加密、重试、定时任务、限流、熔断、降级、工具类、导出等等通用能力可以在这个模块做，按需求引入依赖-->
 
+        <!-- 依赖config模块-->
+        <dependency>
+            <groupId>com.tims.bootframe</groupId>
+            <artifactId>bootframe-config</artifactId>
+            <version>${tims.bootframe.version}</version>
+        </dependency>
+
         <!-- xxl-job-->
+        <!-- 会依赖mysql，所以要配置数据库连接，不配置的话这个模块会报错-->
         <dependency>
             <groupId>com.xuxueli</groupId>
             <artifactId>xxl-job-core</artifactId>
@@ -60,7 +68,7 @@
         <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
         <!--                <version>${spring-boot.version}</version>-->
         <!--                <configuration>-->
-        <!--                    <mainClass>com.tims.bootframe.common.BootframeCommonApplication</mainClass>-->
+        <!--                    <mainClass>com.tims.bootframe.BootframeCommonApplication</mainClass>-->
         <!--                    <skip>true</skip>-->
         <!--                </configuration>-->
         <!--                <executions>-->

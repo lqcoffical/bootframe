@@ -35,6 +35,14 @@
         where
         gender = #{gender,jdbcType=NUMERIC}
     </select>
+
+    <select id="selectUsersByPage" resultType="com.tims.bootframe.dao.entity.User">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        limit #{startIndex},#{pageSize}
+    </select>
+
     <update id="updateSelective">
         update user
         <set>

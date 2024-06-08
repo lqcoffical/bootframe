@@ -64,7 +64,7 @@
 <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
 <!--                <version>${spring-boot.version}</version>-->
 <!--                <configuration>-->
-<!--                    <mainClass>com.tims.bootframe.biz.BootframeBizApplication</mainClass>-->
+<!--                    <mainClass>com.tims.bootframe.BootframeBizApplication</mainClass>-->
 <!--                    <skip>true</skip>-->
 <!--                </configuration>-->
 <!--                <executions>-->

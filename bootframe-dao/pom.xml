@@ -48,10 +48,10 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>mybatis-plus-generator</artifactId>-->
+<!--        </dependency>-->
 
         <!-- 模版引擎-->
         <dependency>
@@ -96,7 +96,7 @@
 <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
 <!--                <version>${spring-boot.version}</version>-->
 <!--                <configuration>-->
-<!--                    <mainClass>com.tims.bootframe.dao.BootframeDaoApplication</mainClass>-->
+<!--                    <mainClass>com.tims.bootframe.BootframeDaoApplication</mainClass>-->
 <!--                    <skip>true</skip>-->
 <!--                </configuration>-->
 <!--                <executions>-->
