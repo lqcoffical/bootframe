@@ -15,6 +15,13 @@ spring:
       pool-name: hikariConnectionPool
       minimum-idle: 10
       maximum-pool-size: 25
+#  redis:
+#    database: 0
+#    host: 127.0.0.1
+#    port: 6379
+#    password:
+#    connect-timeout: 5000ms
+
 
 server:
   port: 8080
@@ -27,9 +34,12 @@ server:
       max: 800
 
 # 开启mybatis的sql打印
+# 没有type-aliases-package和mapper-locations也起作用
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.tims.bootframe.dao.entity
+  mapper-locations: classpath*:mapper/*Mapper.xml
 
 # 要指定日志配置文件的位置才能生效
 logging:

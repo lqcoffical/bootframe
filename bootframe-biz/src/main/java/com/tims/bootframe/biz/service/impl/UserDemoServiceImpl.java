@@ -1,5 +1,7 @@
 package com.tims.bootframe.biz.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.tims.bootframe.biz.annotation.Match;
@@ -8,10 +10,13 @@ import com.tims.bootframe.common.front.PageResponse;
 import com.tims.bootframe.dao.entity.User;
 import com.tims.bootframe.dao.repository.UserRepository;
 import com.tims.bootframe.dao.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserDemoServiceImpl implements UserDemoService {
@@ -72,9 +77,27 @@ public class UserDemoServiceImpl implements UserDemoService {
         // 用mybatis-plus的代码生成器就行，已经有单表的增删改查操作了
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<User> page = userService.page(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(pageNum,pageSize));
         PageResponse<List<User>> response = new PageResponse<>();
+        response.setTotalCount(page.getTotal());
         response.setPageNum((int) page.getCurrent());
         response.setPageSize((int) page.getSize());
         response.setData(page.getRecords());
+        return response;
+    }
+
+    @Override
+    public PageResponse<List<User>> getUsersByConditions(Integer pageNum, Integer pageSize, String name, Integer gender, LocalDate begin, LocalDate end) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<User> page = new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(pageNum, pageSize);
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.likeRight(StringUtils.isNotBlank(name), User::getName, name)
+                .eq(Objects.nonNull(gender), User::getGender, gender)
+                .ge(Objects.nonNull(begin), User::getCreateTime, begin)
+                .le(Objects.nonNull(end), User::getCreateTime, end);
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<User> userPage = userService.page(page, queryWrapper);
+        PageResponse<List<User>> response = new PageResponse<>();
+        response.setTotalCount(userPage.getTotal());
+        response.setPageNum((int) userPage.getCurrent());
+        response.setPageSize((int) userPage.getSize());
+        response.setData(userPage.getRecords());
         return response;
     }
 

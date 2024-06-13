@@ -57,4 +57,119 @@
         </set>
         where id = #{id,jdbcType=NUMERIC}
     </update>
+
+    <insert id="insertBatch">
+        insert into user(id,username,name,
+        age,gender,password,
+        status,create_time,update_time)
+        values
+        <foreach collection="userCollection" item="item" separator=",">
+            (#{item.id,jdbcType=NUMERIC},#{item.username,jdbcType=VARCHAR},#{item.name,jdbcType=VARCHAR},
+            #{item.age,jdbcType=NUMERIC},#{item.gender,jdbcType=NUMERIC},#{item.password,jdbcType=VARCHAR},
+            #{item.status,jdbcType=NUMERIC},#{item.createTime},#{item.updateTime})
+        </foreach>
+    </insert>
+
+    <select id="selectByNameStartWith" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where
+        name like CONCAT('%', #{name,jdbcType=VARCHAR})
+    </select>
+
+    <select id="selectByConditions" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where
+        name like CONCAT('%', #{name,jdbcType=VARCHAR})
+        AND gender = #{gender,jdbcType=NUMERIC}
+        AND create_time > #{createTime}
+        AND create_time <![CDATA[  < ]]> #{oldCreateTime}
+    </select>
+
+    <!-- where标签在条件都为null时不进，有大于等于一个条件不为null走where，不用写where1=1，并且可以去除多余的and和or   -->
+    <select id="selectByNameStartWithAndGenderEqualsAndCreateTimeBetween" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        <where>
+            <if test="name != null">name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')</if>
+            <if test="gender != null">AND gender = #{gender,jdbcType=NUMERIC}</if>
+            <if test="beginCreateTime !=null and endCreateTime != null">AND create_time between #{beginCreateTime} and #{endCreateTime} </if>
+        </where>
+    </select>
+
+    <select id="selectOneByPasswordEquals" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where
+        password = #{password,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByNameLike" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where
+        name like #{name,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByGenderAndStatus" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        <where>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=NUMERIC}
+            </if>
+            <if test="status != null">
+                AND status = #{status,jdbcType=NUMERIC}
+            </if>
+        </where>
+    </select>
+    <select id="selectByNameLikeAndGenderEquals" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        <where>
+            <if test="name != null and name != ''">
+                name like #{name,jdbcType=VARCHAR}
+            </if>
+            AND
+            <if test="gender != null">
+                gender = #{gender,jdbcType=NUMERIC}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertSelective" useGeneratedKeys="true" keyColumn="id">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="username != null">username,</if>
+            <if test="name != null">name,</if>
+            <if test="age != null">age,</if>
+            <if test="gender != null">gender,</if>
+            <if test="password != null">password,</if>
+            <if test="status != null">status,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=INTEGER},</if>
+            <if test="username != null">#{username,jdbcType=VARCHAR},</if>
+            <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+            <if test="age != null">#{age,jdbcType=TINYINT},</if>
+            <if test="gender != null">#{gender,jdbcType=TINYINT},</if>
+            <if test="password != null">#{password,jdbcType=VARCHAR},</if>
+            <if test="status != null">#{status,jdbcType=TINYINT},</if>
+            <if test="createTime != null">NOW(),</if>
+            <if test="updateTime != null">NOW(),</if>
+        </trim>
+    </insert>
+
 </mapper>

@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.10</version>
+        <version>2.7.6</version>
     </parent>
 
     <groupId>com.tims.bootframe</groupId>
@@ -23,6 +23,7 @@
         <module>bootframe-config</module>
         <module>bootframe-dao</module>
         <module>bootframe-web</module>
+        <module>bootframe-cloud</module>
     </modules>
 
     <!-- 后续根据需要再引入相应组件-->
@@ -40,6 +41,7 @@
         <mybatis-plus.version>3.5.6</mybatis-plus.version>
         <mybatis-plus-generator.version>3.5.6</mybatis-plus-generator.version>
         <spring-boot.version>2.7.10</spring-boot.version>
+        <redisson.version>3.20.1</redisson.version>
         <!--        <spring-cloud.version>2021.0.1</spring-cloud.version>-->
         <spring-cloud-alibaba.version>2021.0.6.0</spring-cloud-alibaba.version>
         <commons.lang3.version>3.14.0</commons.lang3.version>
@@ -54,6 +56,7 @@
         <aspectj.version>1.9.22</aspectj.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <pagehelper-starter.version>2.1.0</pagehelper-starter.version>
+        <sharding-jdbc.version>4.1.1</sharding-jdbc.version>
         <tims.bootframe.version>0.0.1-SNAPSHOT</tims.bootframe.version>
     </properties>
 
@@ -100,6 +103,19 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+
+            <!-- 分库分表shardingsphere-->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                <version>${sharding-jdbc.version}</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
@@ -210,6 +226,18 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--redis客户端，引入redis的时候再打开-->
+<!--        <dependency>-->
+<!--            <groupId>org.redisson</groupId>-->
+<!--            <artifactId>redisson-spring-boot-starter</artifactId>-->
+<!--            &lt;!&ndash; 与springboot-test冲突&ndash;&gt;-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>objenesis</artifactId>-->
+<!--                    <groupId>org.objenesis</groupId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
 
         <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
